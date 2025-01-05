@@ -49,7 +49,9 @@ def create_app():
     # Register blueprints
     from v1.auth import register_auth_blueprint
     register_auth_blueprint(app)
-
+    from v1.core.habit import register_habit_blueprint
+    register_habit_blueprint(app)
+    
     # Token blacklisting check
     @jwt.token_in_blocklist_loader
     def check_if_token_is_revoked(jwt_header, jwt_payload):
