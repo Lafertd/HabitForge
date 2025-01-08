@@ -142,7 +142,7 @@ class HabitEngine:
                 else:
                     break
 
-        return {"message": f"Your streak for the habit '{habit_name}' at the frequency '{habit_frequency}' is '{streak}'"}
+        return {"streak_count": f"Your streak for '{habit_name}' is '{streak}'"}
 
     def statistics(self, habit_id: str) -> Tuple[Dict[str, Union[str, dict]], int]:
         """
@@ -150,13 +150,13 @@ class HabitEngine:
         """
         habit = Habit.habits.find_one({'habit_id': habit_id})
         if not habit:
-            return {"message": "Habit not found"}, 404
+            return jsonify({"message": "Habit not found"}), 404
 
         habit_frequency: Optional[str] = habit.get('frequency')
         if not habit_frequency:
-            return {"message": "No frequency found, update frequency for the habit and try again"}, 404
+            return jsonify({"message": "No frequency found, update frequency for the habit and try again"}), 404
         elif habit_frequency not in ['daily', 'weekly', 'monthly']:
-            return {"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}, 400
+            return jsonify({"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}), 409
 
         log_entry = Habit_Log.habit_logs.find_one(
             {"habit_id": habit_id},
@@ -164,11 +164,11 @@ class HabitEngine:
         )
         start_date: Optional[datetime] = log_entry.get("timestamp") if log_entry else None
         if not start_date:
-            return {"message": "Habit start date is missing"}, 400
+            return jsonify({"message": "Habit start date is missing"}), 400
 
         logs = Habit_Log.habit_logs.find({'habit_id': habit_id}).sort('timestamp', 1)
         if not logs:
-            return {"message": "No logs found for this habit"}, 404
+            return jsonify({"message": "No logs found for this habit"}), 404
 
         total_periods: int = 0
         completed: int = 0

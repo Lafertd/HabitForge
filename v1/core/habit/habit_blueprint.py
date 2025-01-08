@@ -236,13 +236,12 @@ def get_statistics():
 
     habit_name = request.json.get("habit_name") # This should be included in the request body
     username = get_jwt_identity()
-
     # Fetch the habit from the MongoDB database
-    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
-    if habit:
+    if not Habit.habits.find_one({"username": username, "habit_name": habit_name}):
+        return jsonify({"message": "habit not found"}), 404
+    else:
+        habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
         habit_id = habit.get('habit_id')
         engine = HabitEngine()
         stats = engine.statistics(habit_id=habit_id)
         return stats
-    else:
-        return jsonify({"habit not found"}), 404
