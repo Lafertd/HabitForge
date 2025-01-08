@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt, create_access_token
 from werkzeug.security import check_password_hash
 import redis
-from models.database import User, Habit
+from database.data import User, Habit
 from typing import Optional, Dict, Tuple, Union
 
 # Create the blueprint for authentication
