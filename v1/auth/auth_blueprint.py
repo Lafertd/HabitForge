@@ -69,9 +69,8 @@ def logout() -> Dict[str, str]:
     Logs the user out by blacklisting the JWT token.
     """
     jti = get_jwt()["jti"]
-    
-    r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
+    r = redis.StrictRedis(host="redis-12255.c10.us-east-1-4.ec2.cloud.redislabs.com", port=12255, password = "1rPEIkNriUNIT8PyUpy6C4rQCId3evGb", db =0)
     r.setex(jti, 3600, "invalid")
 
     return jsonify(msg="Successfully logged out"), 200
