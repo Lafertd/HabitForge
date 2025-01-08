@@ -37,3 +37,20 @@ def rename_habit():
         habit_obj.rename_habit(habit_name, new_habit_name)
         return jsonify({"message": f"Habit renamed to {new_habit_name}"})
     return jsonify({"message": f"Habit not found"})
+
+
+@habit.route("/delete", methods=['DELETE'], strict_slashes=False)
+@jwt_required()
+def del_habit():
+    """ Delete a specific habit. """
+    username = get_jwt_identity()
+    habit_name = request.json.get("habit_name")
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    if habit is None:
+        return jsonify({"message": "Habit not found"}), 404
+    else:
+        habit_obj = Habit(username=username, habit_name=habit_name)
+        if habit_obj is None:
+            return jsonify({"message": "Habit not found"}), 404
+        del_habit = habit_obj.delete_habit(habit_name)
+        return jsonify({"message": f"{del_habit}"})
