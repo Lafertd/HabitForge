@@ -208,3 +208,21 @@ def habit_log():
             return jsonify(list_logs), 200
         else:
             return jsonify({"message": f"{logs} is not in the correct format"}), 500
+
+
+@habit.route("/streak", methods=['GET'], strict_slashes=False)
+@jwt_required()
+def get_streak():
+
+    habit_name = request.json.get("habit_name") # This should be included in the request body
+    username = get_jwt_identity()
+
+    # Fetch the habit from the MongoDB database
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    if habit:
+        habit_id = habit.get('habit_id')
+        engine = HabitEngine()
+        get_streak = engine.streak(habit_id=habit_id)
+        return get_streak
+    else:
+        return jsonify({"message": "habit not found"}), 404
