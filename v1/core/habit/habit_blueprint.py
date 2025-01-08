@@ -104,6 +104,27 @@ def habit_details():
             if key not in ['_id', 'habit_id', 'start_date']:
                 filtered_attr[key] = value
         filtered_habit.append(filtered_attr)
-        return jsonify({"message": sorted_data}), 201
+        return jsonify({"message": filtered_habit}), 201
     else:
         return jsonify({"message": "Habit not found"}), 404
+
+
+@habit.route("/status", methods=["GET", "PUT"], strict_slashes=False)
+@jwt_required()
+def habit_status():
+    """ Log progress or completion for a specific habit. """
+
+    username = get_jwt_identity()
+    habit_name = request.json.get("habit_name")
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+
+    if request.method == "GET":
+        habit_obj = Habit(username=username, habit_name=habit_name)
+        status = habit_obj.get_status(habit_name)
+        return jsonify({"message": status})
+
+    elif request.method == "PUT":
+        status = request.json.get("status")
+        habit_obj = Habit(username=username, habit_name=habit_name)
+        result = habit_obj.put_status(habit_name, status)
+        return jsonify({"message": result})

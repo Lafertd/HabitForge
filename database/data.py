@@ -122,13 +122,12 @@ class Habit:
             {"username": self.username, "habit_name": habit_name},
             {"$set": {"status": status}}
         )
-        return f"Status for {habit_name} updated to {status}"
+        return f"Status for {habit_name} is '{status}'"
 
     def habit_frequency(self, habit_name):
         habit = self.habits.find_one({"username": self.username, "habit_name": habit_name})
         if habit:
             return habit.get("frequency", "Frequency not found")
-        return f"Frequency not found"
 
 
 class Habit_Log:
