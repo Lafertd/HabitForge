@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # **HabitForge: Habit Tracking API**
 
 HabitForge is a powerful backend API designed to help users break bad habits and build better ones. Whether it's daily reading, exercise, or any personal goal, HabitForge offers a flexible, scalable, and easy-to-integrate solution for habit creation, tracking, logging, and analytics.
@@ -119,7 +118,7 @@ HabitForge is open-source and licensed under the MIT License.
 ## **Contact**
 
 **Author**: Lafertd  
-**Project URL**: [https://github.com/](https://github.com/your-repo-url)
+**Project URL**: [https://github.com/](https://github.com/Lafertd)
 
 ---
 
