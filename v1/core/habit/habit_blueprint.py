@@ -54,3 +54,16 @@ def del_habit():
             return jsonify({"message": "Habit not found"}), 404
         del_habit = habit_obj.delete_habit(habit_name)
         return jsonify({"message": f"{del_habit}"})
+
+
+@habit.route("/reset", methods=['DELETE'], strict_slashes=False)
+@jwt_required()
+def reset_habits():
+    """ Reset all habits to 0. """
+    username = get_jwt_identity()
+    habit = Habit.habits.find({"username": username})
+    if habit:
+        habit_obj = Habit(username=username)
+        reset_habits = habit_obj.reset()
+        return jsonify({"message": reset_habits})
+    return jsonify({"message": "Habit not found"}), 404
