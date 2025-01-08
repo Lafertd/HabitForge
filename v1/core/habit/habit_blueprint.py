@@ -128,3 +128,27 @@ def habit_status():
         habit_obj = Habit(username=username, habit_name=habit_name)
         result = habit_obj.put_status(habit_name, status)
         return jsonify({"message": result})
+
+
+@habit.route("/frequency", methods=["GET", "PUT"], strict_slashes=False)
+@jwt_required()
+def habit_frequency():
+    """ Get the frequency of a specific habit. """
+
+    username = get_jwt_identity()
+    new_frequency = request.json.get("new_frequency")
+    habit_name = request.json.get("habit_name")
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    if habit:
+        habit_obj = Habit(username=username, habit_name=habit_name)
+        if request.method == "GET":
+            frequency = habit_obj.habit_frequency(habit_name)
+            return jsonify({"frequency": frequency})
+        elif request.method == "PUT":
+            Habit.habits.update_one(
+                    {"habit_id": habit["habit_id"]},
+                    {"$set": {"frequency": new_frequency}}
+                )
+            return jsonify({"message": f"{new_frequency} frequency submitted successfully"}), 201
+    else:
+        return jsonify({"message": "Habit not found"}), 404
