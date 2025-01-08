@@ -5,6 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from typing import Optional
 import uuid
 import json
+import datetime
 
 habit = Blueprint('habit', __name__)
 
@@ -67,3 +68,23 @@ def reset_habits():
         reset_habits = habit_obj.reset()
         return jsonify({"message": reset_habits})
     return jsonify({"message": "Habit not found"}), 404
+
+
+@habit.route("/all", methods=['GET'], strict_slashes=False)
+@jwt_required()
+def list_habits():
+    """ List all habits associated with the authenticated user. """
+    username = get_jwt_identity()
+    all_habits = []
+    for habit in Habit.find({"username": username}):
+        if isinstance(habit, dict):  # Ensure habit is a dictionary
+            # Exclude fields (_id, habit_id, start_date)
+            filter_habit = {}
+            for key, value in habit.items():
+                if key not in ['_id', 'habit_id', 'start_date']:
+                    filter_habit[key] = value
+            all_habits.append(str(filter_habit))  # Add the filtered habit to the list
+
+    if all_habits == []:
+            return jsonify({"message": "you have no habits yet"}), 404
+    return jsonify({"message": all_habits}), 201
