@@ -226,3 +226,23 @@ def get_streak():
         return get_streak
     else:
         return jsonify({"message": "habit not found"}), 404
+
+
+@habit.route("/statistics", methods=['GET'], endpoint="statistics", strict_slashes=False)
+@habit.route("/stats", methods=['GET'], endpoint="stats", strict_slashes=False)
+@jwt_required()
+def get_statistics():
+
+
+    habit_name = request.json.get("habit_name") # This should be included in the request body
+    username = get_jwt_identity()
+
+    # Fetch the habit from the MongoDB database
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    if habit:
+        habit_id = habit.get('habit_id')
+        engine = HabitEngine()
+        stats = engine.statistics(habit_id=habit_id)
+        return stats
+    else:
+        return jsonify({"habit not found"}), 404
