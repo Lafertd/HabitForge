@@ -88,3 +88,22 @@ def list_habits():
     if all_habits == []:
             return jsonify({"message": "you have no habits yet"}), 404
     return jsonify({"message": all_habits}), 201
+
+
+@habit.route("/details", methods=["GET"], strict_slashes=False)
+@jwt_required()
+def habit_details():
+    """ Get detailed information about a specific habit. """
+    username = get_jwt_identity()
+    habit_name = request.json.get("habit_name")
+    details = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    filtered_habit = []
+    filtered_attr = {}
+    if details:
+        for key, value in details.items():
+            if key not in ['_id', 'habit_id', 'start_date']:
+                filtered_attr[key] = value
+        filtered_habit.append(filtered_attr)
+        return jsonify({"message": sorted_data}), 201
+    else:
+        return jsonify({"message": "Habit not found"}), 404
