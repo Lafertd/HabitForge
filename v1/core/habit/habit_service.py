@@ -25,7 +25,7 @@ class HabitEngine:
 
         log = log.lower()
         if log != 'done':
-            return {"message": "Log content should be 'done'"}, 400
+            return {"message": "Log content should be 'done'"}, 409
 
         habit = Habit.habits.find_one({'habit_id': habit_id})
         if not habit:
@@ -36,7 +36,7 @@ class HabitEngine:
             return {"message": "No frequency found, update frequency for the habit and try again"}, 404
 
         if habit_frequency not in ['daily', 'weekly', 'monthly']:
-            return {"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}, 400
+            return {"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}, 409
 
         try:
             today: datetime = datetime.utcnow()
@@ -49,26 +49,26 @@ class HabitEngine:
             if log_entry and not start_date:
                 return {"message": f"Habit log entry found but missing timestamp: {log_entry}"}, 400
 
-            if habit_frequency == 'daily':
+            elif habit_frequency == 'daily':
                 if not start_date or today - start_date >= timedelta(days=1):
                     result = Habit_Log(username, habit_name, habit_id, log).insert_log()
-                    return result, 201
+                    return result
                 else:
-                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per day"}, 401
+                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per day"}, 409
 
             elif habit_frequency == 'weekly':
                 if not start_date or today - start_date >= timedelta(weeks=1):
                     result = Habit_Log(username, habit_name, habit_id, log).insert_log()
-                    return {"message": "Log added successfully", "result": result}, 201
+                    return result
                 else:
-                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per week"}, 401
+                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per week"}, 409
 
             elif habit_frequency == 'monthly':
                 if not start_date or today - start_date >= timedelta(days=30):
                     result = Habit_Log(username, habit_name, habit_id, log).insert_log()
-                    return {"message": "Log added successfully", "result": result}, 201
+                    return result
                 else:
-                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per month"}, 401
+                    return {"message": f"You can't log more than 1 '{habit_frequency}' log per month"}, 409
 
         except Exception as e:
             return {"message": f"Error posting log: {str(e)}"}, 500
@@ -78,7 +78,7 @@ class HabitEngine:
         Fetches log history for a given habit ID.
         """
         logs = Habit_Log.habit_logs.find({'habit_id': habit_id})
-        if not logs:
+        if logs is None:
             return {"message": "No logs found"}, 404
         return logs
 

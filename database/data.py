@@ -58,7 +58,6 @@ class Habit:
         self.status = status  # Default to None if not provided
         self.start_date = datetime.utcnow() # created_at that time
 
-
     # Ensure the Habit class has a find method defined to query the database
     @classmethod
     def find(cls, query):
@@ -130,7 +129,6 @@ class Habit:
             return habit.get("frequency")
         return f"Frequency not found"
 
-
 class Habit_Log:
     # Initialize the MongoDB client and habit_logs collection at the class level
     client = MongoClient(mongo_uri)
@@ -144,7 +142,6 @@ class Habit_Log:
         self.habit_id = habit_id
         self.log = log
         self.timestamp = datetime.utcnow()
-        #self.date = date
 
     def insert_log(self):
         
@@ -155,9 +152,8 @@ class Habit_Log:
                 "timestamp": self.timestamp,
                 "log": self.log
                 }
-
         try:
             self.habit_logs.insert_one(log_data)
-            return {"message": "Log added successfully"}
+            return {"message": "Log added successfully"}, 201
         except Exception as e:
             return {"message": f"Error adding log: {str(e)}"}

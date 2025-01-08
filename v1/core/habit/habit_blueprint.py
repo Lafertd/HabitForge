@@ -141,14 +141,70 @@ def habit_frequency():
     habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
     if habit:
         habit_obj = Habit(username=username, habit_name=habit_name)
+        frequency = habit_obj.habit_frequency(habit_name)
+        
         if request.method == "GET":
-            frequency = habit_obj.habit_frequency(habit_name)
             return jsonify({"frequency": frequency})
         elif request.method == "PUT":
-            Habit.habits.update_one(
-                    {"habit_id": habit["habit_id"]},
-                    {"$set": {"frequency": new_frequency}}
-                )
-            return jsonify({"message": f"{new_frequency} frequency submitted successfully"}), 201
-    else:
-        return jsonify({"message": "Habit not found"}), 404
+            if frequency in ['daily', 'weekly', 'monthly']:
+                return jsonify({"message": "Frequency updates are not allowed. Logs must maintain consistency for 'daily', 'weekly', or 'monthly' tracking."}), 403
+            else:
+                Habit.habits.update_one(
+                        {"habit_id": habit["habit_id"]},
+                        {"$set": {"frequency": new_frequency}}
+                        )
+                return jsonify({"message": f"{new_frequency} frequency submitted successfully"}), 201
+        else:
+            return jsonify({"message": "Habit not found"}), 404
+
+
+
+@habit.route("/log", methods=['POST', 'GET'], strict_slashes=False)
+@jwt_required()
+def habit_log():
+    habit_name = request.json.get("habit_name") # This should be included in the request body
+    username = get_jwt_identity()
+
+    # Fetch the habit from the MongoDB database
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+
+    if not habit:
+        return jsonify({"message": "Habit not found"}), 404  # Return 404 if habit doesn't exist
+
+    habit_id = habit.get("habit_id")
+
+    if request.method == 'POST':
+        log = request.json.get("log")  # This should be included in the request body
+        if not log:
+            return jsonify({"message": "Log content cannot be empty"}), 400  # Validate log content
+
+        # Using HabitEngine to post the log
+        engine = HabitEngine()
+        try:
+            post_result = engine.post_log(username=username, habit_name=habit_name, habit_id=habit_id, log=log)  # Pass [username, habit_name, habit_id, log]
+            return post_result
+        except Exception as e:
+            return {"message": f"Error posting log: {str(e)}"}, 500
+
+    elif request.method == 'GET':
+        # Fetch log history for the given habit_id
+        logs = HabitEngine().log_history(habit_id=str(habit_id))
+        # Process each log item
+        
+        list_logs = []
+        for log in logs:
+            formatted_log = {}
+            for k, v in log.items():
+                if k == "_id":
+                    formatted_log[k] = str(v)  # Convert _id to string
+                elif k == "timestamp":
+                    formatted_log[k] = v.isoformat()  # Convert timestamp to ISO format
+                else:
+                    formatted_log[k] = v  # Add other values as they are
+            list_logs.append(formatted_log) # Append formatted log to the list isinstance(list_logs, list):  # Ensure logs are returned in the correct format (list of dicts)
+        if isinstance(list_logs, list):
+            if list_logs == []:
+                return {"message": "No logs found"}, 404
+            return jsonify(list_logs), 200
+        else:
+            return jsonify({"message": f"{logs} is not in the correct format"}), 500
