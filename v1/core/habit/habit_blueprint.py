@@ -22,3 +22,18 @@ def create_habit():
         habit_obj.create()
         return jsonify({"message": f"{frequency} '{habit_name}' habit created successfully"})
     return jsonify({"message": f"{habit_name} habit already exists"})
+
+
+@habit.route("/rename", methods=["PUT"], strict_slashes=False)
+@jwt_required()
+def rename_habit():
+    """ Rename a habit. """
+    username = get_jwt_identity()
+    habit_name = request.json.get("habit_name")
+    new_habit_name = request.json.get("new_habit_name")
+    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+    if habit:
+        habit_obj = Habit(username=username, habit_name=habit_name)
+        habit_obj.rename_habit(habit_name, new_habit_name)
+        return jsonify({"message": f"Habit renamed to {new_habit_name}"})
+    return jsonify({"message": f"Habit not found"})
