@@ -2,6 +2,7 @@
 
 HabitForge is a powerful backend API designed to help users break bad habits and build better ones. Whether it's daily reading, exercise, or any personal goal, HabitForge offers a flexible, scalable, and easy-to-integrate solution for habit creation, tracking, logging, and analytics.
 
+
 ## **Key Features:**
 
 - **Habit Management**: Easily create, update, delete, and reset habits.
@@ -106,6 +107,9 @@ Future releases will include comprehensive testing coverage to ensure API stabil
 ## **Contributing**
 
 If you'd like to contribute to HabitForge, feel free to fork the repository and submit a pull request. Contributions are welcome for both functional improvements and bug fixes. Please ensure to follow the style guidelines when adding features.
+
+(https://habitforge-4bd19d64920e.herokuapp.com/)
+
 
 ---
 
