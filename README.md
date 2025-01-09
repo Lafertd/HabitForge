@@ -49,9 +49,9 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory and add the following (replace with actual values):
 
 ```bash
-MONGODB_URI=your_mongodb_atlas_connection_string(or you can just use the local MONGODB Community)
-REDIS_URL=your_redis_cloud_url(you can use redis locally or in deployement as addon on heroku)
-JWT_SECRET_KEY=your_jwt_secret_key(Use 'Secrets Library; 'https://docs.python.org/3/library/secrets.html')
+MONGODB_URI=mongodb://localhost:27017 # (or use your_mongodb_atlas_connection_string)
+REDIS_URL=redis://localhost:6379 # (or use redis-cloud on heroku addons)
+JWT_SECRET_KEY=example_jwt_secret_key # (Use 'Secrets Library; 'https://docs.python.org/3/library/secrets.html')
 ```
 
 ### 5. Run the application locally:
