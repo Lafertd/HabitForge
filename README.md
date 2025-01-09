@@ -34,7 +34,7 @@ cd HabitForge
 ### 2. Set up the virtual environment:
 
 ```bash
-python -m venv myvenv
+python3 -m venv myvenv
 source myvenv/bin/activate
 ```
 
