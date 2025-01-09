@@ -27,7 +27,7 @@ To get started with HabitForge locally, follow these steps:
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo-url.git
+git clone https://github.com/Lafertd/HabitForge
 cd HabitForge
 ```
 
@@ -35,7 +35,7 @@ cd HabitForge
 
 ```bash
 python -m venv myvenv
-source myvenv/bin/activate  # On Windows: myvenv\Scriptsctivate
+source myvenv/bin/activate
 ```
 
 ### 3. Install dependencies:
@@ -49,25 +49,25 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory and add the following (replace with actual values):
 
 ```bash
-MONGODB_URI=your_mongodb_atlas_connection_string
-REDIS_URL=your_redis_cloud_url
-JWT_SECRET_KEY=your_jwt_secret_key
+MONGODB_URI=your_mongodb_atlas_connection_string(or you can just use the local MONGODB Community)
+REDIS_URL=your_redis_cloud_url(you can use redis locally or in deployement as addon on heroku)
+JWT_SECRET_KEY=your_jwt_secret_key(Use 'Secrets Library; 'https://docs.python.org/3/library/secrets.html')
 ```
 
 ### 5. Run the application locally:
 
 ```bash
-flask run
+flask run (--debug: option to run the API with debugger)
 ```
 
-The app will be accessible at [http://localhost:5000](http://localhost:5000).
+The app will be accessible at [http://localhost:5000](http://localhost:5000) by Default.
 
 ### 6. Deploy to Heroku (optional):
 
 ```bash
 heroku create habitforge
-heroku addons:create heroku-redis:hobby-dev
-git push heroku master
+heroku addons:create heroku-redis:hobby-dev(add Redis in heroku if command doesn't work)
+git push heroku main (if it doesn't work use 'master')
 ```
 
 Once deployed, the app will be live on heroku.
@@ -76,26 +76,17 @@ Once deployed, the app will be live on heroku.
 
 ## **API Documentation**
 
-All API routes are documented via Postman. The API allows easy integration for creating, updating, tracking, and analyzing your habits.
+All API routes are documented via Postman. The API allows easy integration for [creating, updating, tracking, and analyzing your habits etc.] On your application.
 
-### Available Endpoints:
-
-- **GET /home**  
-  Redirects to the Postman documentation.
+### Some Endpoints:
 
 - **GET /docs**  
   Retrieves the full API documentation.
 
 - **GET /habit/stats**  
-  Retrieve habit statistics (requires `habit_name` as input).  
-  Example Request:
-
-  ```bash
-  curl --location --request GET 'https://habitforge.herokuapp.com/habit/stats' --data '{"habit_name": "reading"}'
-  ```
-
----
-
+  Retrieve habit statistics (requires `habit_name` as input).
+  ---
+  
 ## **Quality and Testing**
 
 While this MVP version has been rapidly developed and rigorously tested with Postman for core functionality, unit tests are planned for future versions. The current priority is to provide fast, robust, and scalable solutions to help users develop positive habits with immediate results.
@@ -110,7 +101,6 @@ If you'd like to contribute to HabitForge, feel free to fork the repository and 
 
 (https://habitforge-4bd19d64920e.herokuapp.com/)
 
-
 ---
 
 ## **License**
@@ -123,6 +113,7 @@ HabitForge is open-source and licensed under the MIT License.
 
 **Author**: Lafertd  
 **Project URL**: [https://github.com/](https://github.com/Lafertd)
+**Email**: achrafprofessionalinfo@gmail.com
 
 ---
 
