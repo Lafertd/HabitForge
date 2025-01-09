@@ -69,7 +69,7 @@ heroku addons:create heroku-redis:hobby-dev
 git push heroku master
 ```
 
-Once deployed, the app will be live at [https://habitforge.herokuapp.com](https://habitforge.herokuapp.com).
+Once deployed, the app will be live on heroku.
 
 ---
 
