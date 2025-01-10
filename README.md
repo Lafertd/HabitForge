@@ -177,7 +177,9 @@ HabitForge is open-source and licensed under the MIT License.
 ## **Contact**
 
 **Author**: Lafertd
+
 **Project URL**: [HabitForge](https://habitforge-4bd19d64920e.herokuapp.com)
+
 **Email**: achrafprofessionalinfo@gmail.com
 
 ---
