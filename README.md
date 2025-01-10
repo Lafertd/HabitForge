@@ -27,7 +27,7 @@ You can explore and interact with the HabitForge API without needing to download
 
 [**Postman Interactive API**](https://habitforge-4bd19d64920e.herokuapp.com/)
 
-This will allow you to directly test API endpoints, such as creating and managing habits, logging in, and more—all without setting up any local environment.
+This will allow you to directly interact with the API endpoints, such as creating and managing habits, logging in, and more—all without setting up any local environment.
 
 ---
 
