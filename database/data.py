@@ -102,7 +102,7 @@ class Habit:
         else:
             return "Habit not found."
 
-     def reset(self):
+    def reset(self):
         result = self.habits.delete_many({"username": self.username})
         if result.deleted_count > 0:
             return f"All habits for user have been deleted successfully."
