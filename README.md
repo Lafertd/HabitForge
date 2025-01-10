@@ -25,7 +25,7 @@ HabitForge is a powerful backend API designed to help users break bad habits and
 
 You can explore and interact with the HabitForge API without needing to download anything. Click the link below to access the **interactive Postman collection**:
 
-[**Postman Interactive API**](https://habitforge-4bd19d64920e.herokuapp.com/){:target="_blank"}
+[**Postman Interactive API**](https://habitforge-4bd19d64920e.herokuapp.com/)
 
 This will allow you to directly interact with the API endpoints, such as creating and managing habits, logging in, and more—all without setting up any local environment.
 
@@ -73,7 +73,7 @@ JWT_SECRET_KEY=example_jwt_secret_key # (Use 'Secrets Library; 'https://docs.pyt
 python3 -m flask run # (--debug: option to run the API with debugger)
 ```
 
-The app will be accessible at [http://localhost:5000](http://localhost:5000){:target="_blank"} by Default.
+The app will be accessible at [http://localhost:5000](http://localhost:5000) by Default.
 
 ### 6. Deploy to Heroku (optional):
 
@@ -89,7 +89,7 @@ Once deployed, the app will be live on heroku.
 
 ## **API Documentation**
 
-All API routes are documented via Postman on [Docs](https://habitforge-4bd19d64920e.herokuapp.com){:target="_blank"}
+All API routes are documented via Postman on [Docs](https://habitforge-4bd19d64920e.herokuapp.com/)
 
 ## API Endpoints:
 
@@ -164,7 +164,7 @@ Future releases will include comprehensive testing coverage to ensure API stabil
 
 If you'd like to contribute to HabitForge, feel free to fork the repository and submit a pull request. Contributions are welcome for both functional improvements and bug fixes. Please ensure to follow the style guidelines when adding features.
 
-[HabitForge](https://habitforge-4bd19d64920e.herokuapp.com){:target="_blank"}
+[HabitForge](https://habitforge-4bd19d64920e.herokuapp.com)
 
 ---
 
@@ -177,7 +177,7 @@ HabitForge is open-source and licensed under the MIT License.
 ## **Contact**
 
 **Author**: Lafertd
-**Project URL**: [HabitForge](https://habitforge-4bd19d64920e.herokuapp.com){:target="_blank"}
+**Project URL**: [HabitForge](https://habitforge-4bd19d64920e.herokuapp.com)
 **Email**: achrafprofessionalinfo@gmail.com
 
 ---
@@ -185,16 +185,15 @@ HabitForge is open-source and licensed under the MIT License.
 ## **Helpful Links and Resources:**
 
 - **Flask Documentation:**  
-  [Official Flask Documentation](https://flask.palletsprojects.com/){:target="_blank"}
-  [Flask with Gunicorn Setup Guide](https://flask.palletsprojects.com/en/2.0.x/deploying/gunicorn/){:target="_blank"}
-
+  [Official Flask Documentation](https://flask.palletsprojects.com/)
+  [Flask with Gunicorn Setup Guide](https://flask.palletsprojects.com/en/2.0.x/deploying/gunicorn/)
 - **Gunicorn Documentation:**  
-  [Official Gunicorn Documentation](https://docs.gunicorn.org/en/stable{:target="_blank"}
+  [Official Gunicorn Documentation](https://docs.gunicorn.org/en/stable
 
 - **Redis Cloud Setup:**  
-  [Redis Cloud Documentation](https://redis.com/redis-enterprise-cloud/){:target="_blank"}
+  [Redis Cloud Documentation](https://redis.com/redis-enterprise-cloud/)
 
 - **Heroku Documentation:**  
-  [Official Heroku Deployment Guide](https://devcenter.heroku.com/articles/getting-started-with-python){:target="_blank"} 
-  [Heroku Redis Add-On](https://devcenter.heroku.com/articles/heroku-redis){:target="_blank"}
-  [How to deploy from Git to Heroku](https://devcenter.heroku.com/articles/git){:target="_blank"}
+  [Official Heroku Deployment Guide](https://devcenter.heroku.com/articles/getting-started-with-python)
+  [Heroku Redis Add-On](https://devcenter.heroku.com/articles/heroku-redis)
+  [How to deploy from Git to Heroku](https://devcenter.heroku.com/articles/git)
