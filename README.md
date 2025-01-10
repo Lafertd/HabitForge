@@ -20,12 +20,17 @@ HabitForge is a powerful backend API designed to help users break bad habits and
 
 ---
 
-## **Installation & Setup**
-To get started with HabitForge in Production, click the link bellow:
+
+# To get started with HabitForge in Production, click the link bellow: #
       
 https://habitforge-4bd19d64920e.herokuapp.com/
 
-To get started with HabitForge locally, follow these steps:
+
+
+# To get started with HabitForge locally, follow these steps: #
+
+## **Installation & Setup**
+
 
 ### 1. Clone the repository:
 
