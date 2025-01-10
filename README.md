@@ -57,7 +57,7 @@ JWT_SECRET_KEY=example_jwt_secret_key # (Use 'Secrets Library; 'https://docs.pyt
 ### 5. Run the application locally:
 
 ```bash
-flask run (--debug: option to run the API with debugger)
+flask run # (--debug: option to run the API with debugger)
 ```
 
 The app will be accessible at [http://localhost:5000](http://localhost:5000) by Default.
@@ -66,8 +66,8 @@ The app will be accessible at [http://localhost:5000](http://localhost:5000) by 
 
 ```bash
 heroku create habitforge
-heroku addons:create heroku-redis:hobby-dev(add Redis in heroku if command doesn't work)
-git push heroku main (if it doesn't work use 'master')
+heroku addons:create heroku-redis:hobby-dev # (add Redis in heroku if command doesn't work)
+git push heroku main # (if it doesn't work use 'master')
 ```
 
 Once deployed, the app will be live on heroku.
