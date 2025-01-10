@@ -8,7 +8,7 @@ from v1.core.habit import register_habit_blueprint
 
 def home():
     # Redirect to Postman documentation URL
-    return redirect("https://documenter.getpostman.com/view/40761275/2sAYJAfdpY")
+    return redirect("https://documenter.getpostman.com/view/40761275/2sAYQUotVp")
 if __name__ == "__main__":
     app.run()
 
