@@ -50,7 +50,7 @@ def del_habit():
     username = get_jwt_identity()
     habit_name = request.json.get("habit_name")
     habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
-    if habit is None:
+    if not habit:
         return jsonify({"message": "Habit not found"}), 404
     else:
         habit_obj = Habit(username=username, habit_name=habit_name)
