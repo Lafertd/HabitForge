@@ -74,7 +74,7 @@ The app will be accessible at [http://localhost:5000](http://localhost:5000) by 
 
 ```bash
 heroku create habitforge
-heroku addons:create heroku-redis:hobby-dev # (add Redis in heroku if command doesn't work)
+heroku addons:create heroku-redis:hobby-dev # (add Redis in heroku Dashboard if command doesn't work)
 git push heroku main # (if it doesn't work use 'master')
 ```
 
@@ -86,14 +86,66 @@ Once deployed, the app will be live on heroku.
 
 All API routes are documented via Postman. The API allows easy integration for [creating, updating, tracking, and analyzing your habits etc.] On your application.
 
-### Some Endpoints:
+## API Endpoints:
 
-- **GET /docs**  
-  Retrieves the full API documentation.
+## Authentication
 
-- **GET /habit/stats**  
-  Retrieve habit statistics (requires `habit_name` as input).
-  ---
+### **POST /auth/register**
+- Registers a new user.
+- Body: `{"username": "newUser", "password": "securePassword"}`
+
+### **POST /auth/login**
+- Authenticates a user and returns a JWT token.
+- Body: `{"username": "newUser", "password": "securePassword"}`
+
+### **POST /auth/logout**
+- Logs out a user by blacklisting their JWT token.
+- Requires Bearer Token.
+
+---
+
+## Habits
+
+### **GET /habit/all**
+- Retrieves all user's habits.
+- Requires Bearer Token.
+
+### **GET /habit/details**
+- Retrieves details for a specific habit.
+- Body: `{"habit_name": "reading"}`
+- Requires Bearer Token.
+
+### **GET /habit/status**
+- Retrieves current status of a habit.
+- Body: `{"habit_name": "reading"}`
+- Requires Bearer Token.
+
+### **PUT /habit/status**
+- Updates habit status.
+- Body: `{"habit_name": "reading", "status": "New Status"}`
+- Requires Bearer Token.
+
+### **GET /habit/statistics**
+- Retrieves habit statistics.
+- Body: `{"habit_name": "reading"}`
+- Requires Bearer Token.
+
+### **PUT /habit/frequency**
+- Updates habit frequency.
+- Body: `{"habit_name": "reading", "frequency": "weekly"}`
+- Requires Bearer Token.
+
+### **PUT /habit/rename**
+- Renames a habit.
+- Body: `{"habit_name": "read", "new_habit_name": "reading"}`
+- Requires Bearer Token.
+
+### **DELETE /habit/delete**
+- Deletes a habit.
+- Body: `{"habit_name": "reading"}`
+- Requires Bearer Token.
+
+---
   
 ## **Quality and Testing**
 
