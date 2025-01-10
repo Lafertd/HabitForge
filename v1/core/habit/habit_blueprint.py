@@ -57,7 +57,7 @@ def del_habit():
         if habit_obj is None:
             return jsonify({"message": "Habit not found"}), 404
         del_habit = habit_obj.delete_habit(habit_name)
-        return jsonify({"message": f"{del_habit}"})
+        return jsonify({"message": f"{del_habit}"}), 200
 
 
 @habit.route("/reset", methods=['DELETE'], strict_slashes=False)
@@ -69,7 +69,7 @@ def reset_habits():
     if habit:
         habit_obj = Habit(username=username)
         reset_habits = habit_obj.reset()
-        return jsonify({"message": reset_habits})
+        return jsonify({"message": reset_habits}), 200
     return jsonify({"message": "Habit not found"}), 404
 
 
@@ -90,7 +90,7 @@ def list_habits():
 
     if all_habits == []:
             return jsonify({"message": "you have no habits yet"}), 404
-    return jsonify({"message": all_habits}), 201
+    return jsonify({"message": all_habits}), 200
 
 
 @habit.route("/details", methods=["GET"], strict_slashes=False)
@@ -107,7 +107,7 @@ def habit_details():
             if key not in ['_id', 'habit_id', 'start_date']:
                 filtered_attr[key] = value
         filtered_habit.append(filtered_attr)
-        return jsonify({"message": filtered_habit}), 201
+        return jsonify({"message": filtered_habit}), 200
     else:
         return jsonify({"message": "Habit not found"}), 404
 
@@ -121,16 +121,17 @@ def habit_status():
     habit_name = request.json.get("habit_name")
     habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
 
-    if request.method == "GET":
+    if not habit:
+        return jsonify({"message": "Habit not found"}), 404
+    elif request.method == "GET":
         habit_obj = Habit(username=username, habit_name=habit_name)
         status = habit_obj.get_status(habit_name)
-        return jsonify({"message": status})
-
+        return jsonify({"message": status}), 200
     elif request.method == "PUT":
         status = request.json.get("status")
         habit_obj = Habit(username=username, habit_name=habit_name)
         result = habit_obj.put_status(habit_name, status)
-        return jsonify({"message": result})
+        return jsonify({"message": result}), 200
 
 
 @habit.route("/frequency", methods=["GET", "PUT"], strict_slashes=False)
@@ -147,7 +148,7 @@ def habit_frequency():
         frequency = habit_obj.habit_frequency(habit_name)
         
         if request.method == "GET":
-            return jsonify({"frequency": frequency})
+            return jsonify({"frequency": frequency}), 200
         elif request.method == "PUT":
             if frequency in ['daily', 'weekly', 'monthly']:
                 return jsonify({"message": "Frequency updates are not allowed. Logs must maintain consistency for 'daily', 'weekly', or 'monthly' tracking."}), 403
