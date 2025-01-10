@@ -31,7 +31,7 @@ def rename_habit():
     """ Rename a habit. """
     username = get_jwt_identity()
     habit_name = request.json.get("habit_name")
-    new_habit_name = request.json.get("new_habit_name
+    new_habit_name = request.json.get("new_habit_name")
     if Habit.habits.find_one({"username": username, "habit_name": new_habit_name}):
         return jsonify({"message": f"New Habit name already exists, try another one"}), 409
     else:
