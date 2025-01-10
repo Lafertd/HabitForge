@@ -67,8 +67,7 @@ def reset_habits():
     username = get_jwt_identity()
     habit = Habit.habits.find({"username": username})
     if habit:
-        habit_obj = Habit(username=username)
-        reset_habits = habit_obj.reset()
+        reset_habits = habit.reset()
         return reset_habits
     return jsonify({"message": "Habit not found"}), 404
 
