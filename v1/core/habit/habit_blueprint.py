@@ -36,8 +36,8 @@ def rename_habit():
     if habit:
         habit_obj = Habit(username=username, habit_name=habit_name)
         habit_obj.rename_habit(habit_name, new_habit_name)
-        return jsonify({"message": f"Habit renamed to {new_habit_name}"})
-    return jsonify({"message": f"Habit not found"})
+        return jsonify({"message": f"Habit renamed to {new_habit_name}"}), 200
+    return jsonify({"message": f"Habit not found"}), 404
 
 
 @habit.route("/delete", methods=['DELETE'], strict_slashes=False)
