@@ -21,10 +21,15 @@ HabitForge is a powerful backend API designed to help users break bad habits and
 ---
 
 
-## To get started with HabitForge in *** PRODUCTION ***, click the link bellow:
-      
-https://habitforge-4bd19d64920e.herokuapp.com/
+## **To get started with HabitForge in ***PRODUCTION***, interact directly with the API via Postman:**
 
+You can explore and interact with the HabitForge API without needing to download anything. Click the link below to access the **interactive Postman collection**:
+
+[**Postman Interactive API**](https://habitforge-4bd19d64920e.herokuapp.com/)
+
+This will allow you to directly test API endpoints, such as creating and managing habits, logging in, and more—all without setting up any local environment.
+
+---
 
 
 ## To get started with HabitForge in *** DEVELOPMENT ***, follow these steps:
