@@ -102,12 +102,12 @@ class Habit:
         else:
             return "Habit not found."
 
-    def reset(self):
+     def reset(self):
         result = self.habits.delete_many({"username": self.username})
         if result.deleted_count > 0:
-            return jsonify({f"All habits for user '{self.username}' have been deleted successfully."}), 200
+            return f"All habits for user '{self.username}' have been deleted successfully."
         else:
-            return jsonify({f"No habits found for user '{self.username}'. No habits were deleted."}), 404
+            return f"No habits found for user '{self.username}'. No habits were deleted."
 
 
     def get_status(self, habit_name):
