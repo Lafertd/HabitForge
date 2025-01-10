@@ -32,7 +32,7 @@ This will allow you to directly test API endpoints, such as creating and managin
 ---
 
 
-## To get started with HabitForge in *** DEVELOPMENT ***, follow these steps:
+## To get started with HabitForge in ***DEVELOPMENT***, follow these steps:
 
 ### **Installation & Setup**
 
