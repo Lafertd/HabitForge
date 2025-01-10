@@ -21,8 +21,8 @@ def create_habit():
     habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
     if not habit:
         habit_obj.create()
-        return jsonify({"message": f"{frequency} '{habit_name}' habit created successfully"})
-    return jsonify({"message": f"{habit_name} habit already exists"})
+        return jsonify({"message": f"{frequency} '{habit_name}' habit created successfully"}), 201
+    return jsonify({"message": f"{habit_name} habit already exists"}), 409
 
 
 @habit.route("/rename", methods=["PUT"], strict_slashes=False)
