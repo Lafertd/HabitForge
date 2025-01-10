@@ -89,7 +89,7 @@ Once deployed, the app will be live on heroku.
 
 ## **API Documentation**
 
-All API routes are documented via Postman. The API allows easy integration for [creating, updating, tracking, and analyzing your habits etc.] On your application.
+All API routes are documented via Postman on [Docs](https://habitforge-4bd19d64920e.herokuapp.com)
 
 ## API Endpoints:
 
@@ -164,7 +164,7 @@ Future releases will include comprehensive testing coverage to ensure API stabil
 
 If you'd like to contribute to HabitForge, feel free to fork the repository and submit a pull request. Contributions are welcome for both functional improvements and bug fixes. Please ensure to follow the style guidelines when adding features.
 
-(https://habitforge-4bd19d64920e.herokuapp.com/)
+[HabitForge](https://habitforge-4bd19d64920e.herokuapp.com)
 
 ---
 
