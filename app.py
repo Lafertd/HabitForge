@@ -5,6 +5,7 @@ from v1.core.habit import register_habit_blueprint
 @app.route("/docs", methods=['GET'], endpoint="docs", strict_slashes=False)
 @app.route("/home", methods=['GET'], endpoint="home", strict_slashes=False)
 @app.route("/", methods=['GET'], endpoint="/", strict_slashes=False)
+
 def home():
     # Check if the request expects JSON
     if request.headers.get("Accept") == "application/json":
