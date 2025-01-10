@@ -69,7 +69,7 @@ def reset_habits():
     if habit:
         habit_obj = Habit(username=username)
         reset_habits = habit_obj.reset()
-        return jsonify({"message": reset_habits}), 200
+        return reset_habits
     return jsonify({"message": "Habit not found"}), 404
 
 
