@@ -31,13 +31,16 @@ def rename_habit():
     """ Rename a habit. """
     username = get_jwt_identity()
     habit_name = request.json.get("habit_name")
-    new_habit_name = request.json.get("new_habit_name")
-    habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
-    if habit:
-        habit_obj = Habit(username=username, habit_name=habit_name)
-        habit_obj.rename_habit(habit_name, new_habit_name)
-        return jsonify({"message": f"Habit renamed to {new_habit_name}"}), 200
-    return jsonify({"message": f"Habit not found"}), 404
+    new_habit_name = request.json.get("new_habit_name
+    if Habit.habits.find_one({"username": username, "habit_name": habit_name}):
+        return jsonify({"message": f"New Habit name already exists, try another one"}), 409
+    else:
+        habit = Habit.habits.find_one({"username": username, "habit_name": habit_name})
+        if habit:
+            habit_obj = Habit(username=username, habit_name=habit_name)
+            habit_obj.rename_habit(habit_name, new_habit_name)
+            return jsonify({"message": f"Habit renamed to {new_habit_name}"}), 200
+        return jsonify({"message": f"Habit not found"}), 404
 
 
 @habit.route("/delete", methods=['DELETE'], strict_slashes=False)
