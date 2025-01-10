@@ -65,7 +65,7 @@ JWT_SECRET_KEY=example_jwt_secret_key # (Use 'Secrets Library; 'https://docs.pyt
 ### 5. Run the application locally:
 
 ```bash
-Python3 app.py # (--debug: option to run the API with debugger)
+python3 app.py # (--debug: option to run the API with debugger)
 ```
 
 The app will be accessible at [http://localhost:5000](http://localhost:5000) by Default.
