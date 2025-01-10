@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, jsonify
 from config import app
 from v1.core.habit import register_habit_blueprint
 
