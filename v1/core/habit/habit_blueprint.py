@@ -63,14 +63,13 @@ def del_habit():
 @habit.route("/reset", methods=['DELETE'], strict_slashes=False)
 @jwt_required()
 def reset_habits():
-    """ Reset all habits to 0. """
+    """Reset all habits to 0 for the authenticated user."""
     username = get_jwt_identity()
-    habit = Habit.habits.find({"username": username})
-    if habit:
-        habit_obj = Habit(username=username)
-        reset_habits = habit_obj.reset()
-        return reset_habits
-    return jsonify({"message": "Habit not found"}), 404
+    result = Habit.habits.delete_many({"username": username})
+    
+    if result.deleted_count > 0:
+        return jsonify({"message": f"All habits for user '{username}' have been reset successfully."}), 200
+    return jsonify({"message": f"No habits found for user '{username}'. No habits were reset."}), 404
 
 
 @habit.route("/all", methods=['GET'], strict_slashes=False)
