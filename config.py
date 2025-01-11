@@ -20,7 +20,7 @@ def create_app():
     # Redis Configuration (using environment variable, no fallback)
     redis_url = os.getenv('REDIS_URL')  # Must be set in production environment
     if not redis_url:
-        raise ValueError("REDIS_URL must be set in production environment")
+        raise ValueError("REDIS_URL must be Configured")
     parsed_redis = urlparse(redis_url)
 
     # Configure Redis connection
@@ -40,7 +40,7 @@ def create_app():
     # MongoDB Configuration (using environment variable for production)
     mongo_uri = os.getenv('MONGODB_URI')  # Must be set in production environment
     if not mongo_uri:
-        raise ValueError("MONGODB_URI must be set in production environment")
+        raise ValueError("MONGODB_URI must be Configured")
     client = MongoClient(mongo_uri)
     db_name = 'habitforge'  # Use your production database name
     db = client[db_name]
