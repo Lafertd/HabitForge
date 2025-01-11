@@ -142,7 +142,7 @@ class HabitEngine:
                 else:
                     break
 
-        return {"streak_count": f"Your streak for '{habit_name}' is '{streak}'"}
+        return {"streak_count": f"Your streak for '{habit_name}' is '{streak}', you haven't 'log' your progress yet."}
 
     def statistics(self, habit_id: str) -> Tuple[Dict[str, Union[str, dict]], int]:
         """
