@@ -36,7 +36,7 @@ class HabitEngine:
             return {"message": "No frequency found, update frequency for the habit and try again"}, 404
 
         if habit_frequency not in ['daily', 'weekly', 'monthly']:
-            return {"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}, 409
+            return {"message": "Log posting requires frequency to be 'daily', 'weekly', or 'monthly' for accurate tracking."}, 405
 
         try:
             today: datetime = datetime.utcnow()
