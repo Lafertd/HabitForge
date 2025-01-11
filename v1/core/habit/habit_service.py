@@ -163,8 +163,6 @@ class HabitEngine:
             sort=[("timestamp", -1)]
         )
         start_date: Optional[datetime] = log_entry.get("timestamp") if log_entry else None
-        if not start_date:
-            return jsonify({"message": "Habit start date is missing"}), 400
 
         logs = Habit_Log.habit_logs.find({'habit_id': habit_id}).sort('timestamp', 1)
         if not logs:
