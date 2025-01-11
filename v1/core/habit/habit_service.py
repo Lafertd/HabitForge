@@ -163,9 +163,9 @@ class HabitEngine:
             sort=[("timestamp", -1)]
         )
         start_date: Optional[datetime] = log_entry.get("timestamp") if log_entry else None
-
         logs = Habit_Log.habit_logs.find({'habit_id': habit_id}).sort('timestamp', 1)
-        if not logs:
+
+        if not start_date or no logs:
             return jsonify({"message": "No logs found for this habit"}), 404
 
         total_periods: int = 0
