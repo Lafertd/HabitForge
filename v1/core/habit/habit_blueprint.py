@@ -150,7 +150,7 @@ def habit_frequency():
             return jsonify({"frequency": frequency}), 200
         elif request.method == "PUT":
             if frequency in ['daily', 'weekly', 'monthly']:
-                return jsonify({"message": "Frequency updates are not allowed. Logs must maintain consistency for 'daily', 'weekly', or 'monthly' tracking."}), 403
+                return jsonify({"message": "Frequency changes are restricted for 'daily', 'weekly', and 'monthly' habits to preserve tracking accuracy."}), 403
             else:
                 Habit.habits.update_one(
                         {"habit_id": habit["habit_id"]},
