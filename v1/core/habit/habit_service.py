@@ -156,7 +156,7 @@ class HabitEngine:
         if not habit_frequency:
             return jsonify({"message": "No frequency found, update frequency for the habit and try again"}), 404
         elif habit_frequency not in ['daily', 'weekly', 'monthly']:
-            return jsonify({"message": "Frequency must be 'daily', 'weekly', or 'monthly'"}), 409
+            return jsonify({"message": "Only 'daily', 'weekly', or 'monthly' frequencies can generate statistics for accountability."}), 405
 
         log_entry = Habit_Log.habit_logs.find_one(
             {"habit_id": habit_id},
