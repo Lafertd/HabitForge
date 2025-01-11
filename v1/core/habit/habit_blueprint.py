@@ -157,8 +157,8 @@ def habit_frequency():
                         {"$set": {"frequency": new_frequency}}
                         )
                 return jsonify({"message": f"{new_frequency} frequency submitted successfully"}), 201
-        else:
-            return jsonify({"message": "Habit not found"}), 404
+    else:
+        return jsonify({"message": "Habit not found"}), 404
 
 
 
