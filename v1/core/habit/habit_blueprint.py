@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from database.data import User, Habit, Habit_Log
+from HabitForge.database.data import User, Habit, Habit_Log
 from .habit_service import HabitEngine
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from typing import Optional

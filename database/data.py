@@ -4,10 +4,13 @@ from uuid import uuid4  # Correct import for uuid
 import uuid
 from datetime import datetime, timedelta
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 mongo_uri = os.getenv('MONGODB_URI')  # Must be set in production environment
 if not mongo_uri:
-    raise ValueError("MONGODB_URI must be set in production environment")
+    raise ValueError("MONGODB_URI must be set Configured")
 
 class User:
     def __init__(self, username, password):

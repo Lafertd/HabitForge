@@ -1,4 +1,4 @@
-from .habit_blueprint import habit  # Import the auth blueprint
+from .habit_blueprint import habit  # Import the habit blueprint
 
 def register_habit_blueprint(app):
 

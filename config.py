@@ -38,7 +38,7 @@ def create_app():
     app.register_blueprint(sse, url_prefix='/stream')
 
     # MongoDB Configuration (using environment variable for production)
-    mongo_uri = os.getenv('MONGODB_URI')  # Must be set in production environment
+    mongo_uri = os.getenv('MONGODB_URI')  # Must be set in Configured
     if not mongo_uri:
         raise ValueError("MONGODB_URI must be Configured")
     client = MongoClient(mongo_uri)
