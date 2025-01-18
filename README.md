@@ -36,6 +36,12 @@ This will allow you to directly interact with the API endpoints, such as creatin
 
 ### **Installation & Setup**
 
+Note: Both MongoDB and Redis must be installed and running for the application to work in your local system. 
+
+- **MongoDB Installation Guide**: Follow the [MongoDB Installation Guide](https://www.mongodb.com/docs/manual/installation/#mongodb-installation-tutorials) to set up MongoDB on your system.  
+- **Redis Installation Guide**: Follow the [Redis Installation Guide](https://redis.io/docs/getting-started/installation/) to install and configure Redis.
+
+Ensure both services are running before starting the application.
 
 ### 1. Clone the repository:
 
