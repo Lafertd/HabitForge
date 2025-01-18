@@ -1,4 +1,4 @@
-from HabitForge.database import User, Habit, Habit_Log
+from database import User, Habit, Habit_Log
 from datetime import datetime, timedelta
 from flask_sse import sse
 from flask import jsonify
