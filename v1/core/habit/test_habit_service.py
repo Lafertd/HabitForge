@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from typing import Dict
-from HabitForge.v1.core.habit.habit_service import HabitEngine  # Assuming HabitEngine is in habit_service.py
+from habit_service import HabitEngine
 
 
 # Import the function reference without calling it directly
