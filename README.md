@@ -205,3 +205,4 @@ HabitForge is open-source and licensed under the MIT License.
   [Official Heroku Deployment Guide](https://devcenter.heroku.com/articles/getting-started-with-python)
   [Heroku Redis Add-On](https://devcenter.heroku.com/articles/heroku-redis)
   [How to deploy from Git to Heroku](https://devcenter.heroku.com/articles/git)
+
